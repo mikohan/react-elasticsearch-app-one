@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core';
-import ElasticOne from './componenets/ElasticOne.jsx';
-import ElasticTwo from './componenets/ElasticTwo.jsx';
+import ElasticsearchThree from './componenets/ElasticsearchThree';
+import ElasticTwo from './componenets/ElasticTwo';
 import './App.css';
 
 function App() {

@@ -1,29 +1,30 @@
 import React from 'react';
+import AppSearchAPIConnector from '@elastic/search-ui-app-search-connector';
+import { SearchProvider, Results, SearchBox } from '@elastic/react-search-ui';
+import { Layout } from '@elastic/react-search-ui-views';
 
-import elasticsearch from 'elasticsearch';
+import '@elastic/react-search-ui-views/lib/styles/styles.css';
 
-const client = new elasticsearch.Client({
-  host: 'http://127.0.0.1:9200/',
+const connector = new AppSearchAPIConnector({
+  searchKey: 'search-371auk61r2bwqtdzocdgutmg',
+  engineName: 'search-ui-examples',
+  endpointBase: 'http://127.0.0.1:3002',
+  cacheResponses: false,
 });
 
-client
-  .search({
-    index: 'movies', // Your index name for example crud
-    //type: 'doc', // Your index name for example doc
-  })
-  .then(
-    function (resp) {
-      console.log(resp.hits.hits);
-    },
-    function (err) {
-      console.log(err.message);
-    }
-  );
-
-export default function ElasticTwo() {
+export default function App() {
   return (
-    <div>
-      <h1>Elastic two</h1>
-    </div>
+    <SearchProvider
+      config={{
+        apiConnector: connector,
+      }}
+    >
+      <div className="App">
+        <Layout
+          header={<SearchBox />}
+          bodyContent={<Results titleField="title" urlField="nps_link" />}
+        />
+      </div>
+    </SearchProvider>
   );
 }
