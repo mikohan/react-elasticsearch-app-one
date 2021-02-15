@@ -6,9 +6,10 @@ export default function ElasticOne() {
     <Elasticsearch url={url}>
       <Results
         id="result"
-        items={(data) =>
-          data.map((item) => <>{JSON.stringify(item._source)}</>)
-        }
+        items={(data) => {
+          console.log(data);
+          return data.map((item) => <>{JSON.stringify(item._source)}</>);
+        }}
       />
     </Elasticsearch>
   );
